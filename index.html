@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista pessoas</title>
+    <style>
+        table, th, td {
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <th>
+                Nome
+            </th>
+            <th>
+                Idade
+            </th>
+            <th>
+                CPF
+            </th>
+        </thead>
+        <tbody id="tablebody">
+        </tbody>
+    </table>
+
+
+    <script>
+        fetch("http://localhost:3000").then(res=>res.json()).then(json=>{
+            console.log(json)
+            json.forEach((pep)=>{
+            let tbody = document.getElementById("tablebody")
+                let row = document.createElement("tr");
+                let c1 = document.createElement("td");
+                let c2 = document.createElement("td");
+                let c3 = document.createElement("td");
+                c1.innerText = pep.name
+                c2.innerText = pep.idade
+                c3.innerText = pep.cpf
+                tbody.appendChild(row)
+                row.append(c1, c2, c3)
+        })
+        
+        })
+    </script>
+</body>
+</html>
